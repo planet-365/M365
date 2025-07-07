@@ -36,6 +36,7 @@ Microsoft.WindowsNotepad
 Microsoft.WindowsSoundRecorder
 Microsoft.WindowsStore
 Microsoft.WindowsTerminal
+#Microsoft.XboxApp
 #Microsoft.Xbox.TCUI
 #Microsoft.XboxGameOverlay
 #Microsoft.XboxGamingOverlay
