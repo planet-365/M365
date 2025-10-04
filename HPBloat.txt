@@ -1,0 +1,37 @@
+# HP Bloatware Removal List
+# Lines starting with # are comments and will be ignored
+# Update this file anytime - no need to redeploy the Intune package!
+# Last updated: 2025-01-04
+
+[AppXPackages]
+AD2F1837.HPJumpStarts
+AD2F1837.HPPCHardwareDiagnosticsWindows
+AD2F1837.HPPowerManager
+AD2F1837.HPPrivacySettings
+AD2F1837.HPSureShieldAI
+AD2F1837.HPSystemInformation
+AD2F1837.HPQuickDrop
+AD2F1837.HPWorkWell
+AD2F1837.myHP
+AD2F1837.HPDesktopSupportUtilities
+AD2F1837.HPEnhance
+
+[Win32Programs]
+HP Client Security Manager
+HP Connection Optimizer
+HP Documentation
+HP MAC Address Manager
+HP Notifications
+HP Security Update Service
+HP System Default Settings
+HP Sure Click
+HP Sure Run
+HP Sure Run Module
+HP Sure Recover
+HP Sure Sense
+HP Sure Sense Installer
+HP Wolf Security
+HP Wolf Security Application Support for Sure Sense
+HP Wolf Security Application Support for Windows
+HP Wolf Security - Console
+ICS
