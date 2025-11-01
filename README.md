@@ -21,7 +21,61 @@ Before you begin, ensure you have the following:
 - Administrator access to Azure Portal
 - Microsoft Intune subscription
 
-## Azure AD App Registration Setup
+## Quick Start (Automated Setup)
+
+We provide automated scripts to simplify the Azure AD app registration process:
+
+### Option 1: Using Azure CLI (Linux/macOS/WSL)
+
+```bash
+# Install Azure CLI if not already installed
+# Visit: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+
+# Run the automated setup script
+./scripts/setup-azure-app.sh
+
+# Follow the prompts to configure your app
+# The script will create the app registration and generate the .env file
+```
+
+### Option 2: Using PowerShell (Windows)
+
+```powershell
+# Install required modules if not already installed
+Install-Module -Name Az.Accounts -Scope CurrentUser
+Install-Module -Name Az.Resources -Scope CurrentUser
+Install-Module -Name Microsoft.Graph.Applications -Scope CurrentUser
+
+# Run the automated setup script
+.\scripts\Setup-AzureApp.ps1
+
+# Follow the prompts to configure your app
+# The script will create the app registration and generate the .env file
+```
+
+### Option 3: Configure Existing App
+
+If you already have an Azure AD app registration:
+
+```bash
+# Run the configuration script
+./scripts/configure-env.sh
+
+# Enter your existing Client ID and Tenant ID
+```
+
+### Verify Your Setup
+
+```bash
+# Run the verification script
+./scripts/verify-setup.sh
+
+# This will check your configuration and ensure everything is set up correctly
+```
+
+After running the automated setup, skip to the [Running the Application](#running-the-application) section.
+
+## Azure AD App Registration Setup (Manual)
 
 ### Step 1: Register the Application in Azure AD
 
@@ -141,6 +195,11 @@ After deploying, update your Azure AD app registration:
 M365/
 ├── public/
 │   └── index.html
+├── scripts/
+│   ├── setup-azure-app.sh          # Automated Azure AD app setup (Bash)
+│   ├── Setup-AzureApp.ps1          # Automated Azure AD app setup (PowerShell)
+│   ├── configure-env.sh            # Configure .env for existing app
+│   └── verify-setup.sh             # Verify configuration
 ├── src/
 │   ├── components/
 │   │   ├── Dashboard.jsx
@@ -172,23 +231,85 @@ This application uses the following Microsoft Graph API endpoints:
 - `/deviceManagement/mobileApps` - Get mobile applications
 - `/deviceManagement/deviceEnrollmentConfigurations` - Get enrollment configurations
 
+## Automation Scripts Details
+
+### setup-azure-app.sh / Setup-AzureApp.ps1
+
+These scripts automate the entire Azure AD app registration process:
+
+1. **Login to Azure**: Authenticates you with Azure
+2. **Create App Registration**: Creates a new Azure AD app with proper configuration
+3. **Configure as SPA**: Sets up the app as a Single Page Application
+4. **Add API Permissions**: Adds all required Microsoft Graph permissions:
+   - User.Read
+   - DeviceManagementConfiguration.Read.All
+   - DeviceManagementApps.Read.All
+   - DeviceManagementManagedDevices.Read.All
+5. **Grant Admin Consent**: Attempts to grant admin consent automatically
+6. **Generate .env file**: Creates the .env file with your app's configuration
+
+### configure-env.sh
+
+Use this script if you already have an Azure AD app registration. It will:
+- Prompt you for your existing Client ID and Tenant ID
+- Generate the .env file with your configuration
+- Provide a checklist of permissions to verify
+
+### verify-setup.sh
+
+This script verifies your configuration:
+- Checks if .env file exists and contains all required variables
+- Validates the configuration values
+- Verifies the app registration exists (if Azure CLI is available)
+- Checks redirect URI configuration
+- Confirms dependencies are installed
+
 ## Troubleshooting
+
+### Automation Script Issues
+
+**Azure CLI not found**
+```bash
+# Install Azure CLI
+# Visit: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+```
+
+**PowerShell module errors**
+```powershell
+# Install required modules
+Install-Module -Name Az.Accounts -Scope CurrentUser -Force
+Install-Module -Name Microsoft.Graph.Applications -Scope CurrentUser -Force
+```
+
+**Permission denied when running scripts**
+```bash
+# Make scripts executable
+chmod +x scripts/*.sh
+```
+
+**Admin consent not granted automatically**
+- Go to Azure Portal → Azure AD → App registrations
+- Find your app → API permissions
+- Click "Grant admin consent for [Your Organization]"
 
 ### Authentication Errors
 
 - Verify that your Client ID and Tenant ID are correct in `.env`
 - Ensure the redirect URI matches exactly (including protocol and port)
 - Check that admin consent has been granted for API permissions
+- Run `./scripts/verify-setup.sh` to check your configuration
 
 ### Permission Errors
 
 - Verify all required API permissions are added and admin consent is granted
 - Ensure your user account has appropriate Intune admin roles
+- Check that the app registration has delegated permissions (not application permissions)
 
 ### CORS Errors
 
 - Make sure you're using the correct redirect URI type (Single-page application)
 - Verify the redirect URI is registered in Azure AD
+- Ensure the app is configured as SPA (not Web)
 
 ## Security Considerations
 
