@@ -15,6 +15,9 @@ Microsoft.DesktopAppInstaller
 #Microsoft.XboxGamingOverlay
 #Microsoft.XboxIdentityProvider
 #Microsoft.XboxSpeechToTextOverlay
+#*XboxGameCallableUI*
+#*XboxIdentityProvider*
+#*XboxSpeechToTextOverlay*
 
 Microsoft.GetHelp
 Microsoft.Getstarted
@@ -61,3 +64,4 @@ Microsoft.WindowsTerminal
 
 #MicrosoftTeams
 MicrosoftWindows.Client.WebExperience
+
