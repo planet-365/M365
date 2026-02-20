@@ -1,11 +1,21 @@
-Built-in apps listed below that are not prefixed with a  will be considered eligible for removal
+Built-in apps listed below that are not prefixed with a # will be considered eligible for removal
 Prefix item with # to mark it for removal
 
 Microsoft.549981C3F5F10
 #Microsoft.BingNews
 #Microsoft.BingWeather
 Microsoft.DesktopAppInstaller
-#Microsoft.GamingApp
+
+# --- Xbox & Gaming (Updated for Build 26200) ---
+#*GamingApp*
+#*Xbox*
+#Microsoft.XboxApp
+#Microsoft.Xbox.TCUI
+#Microsoft.XboxGameOverlay
+#Microsoft.XboxGamingOverlay
+#Microsoft.XboxIdentityProvider
+#Microsoft.XboxSpeechToTextOverlay
+
 Microsoft.GetHelp
 Microsoft.Getstarted
 Microsoft.HEIFImageExtension
@@ -29,21 +39,25 @@ Microsoft.Windows.Photos
 Microsoft.WindowsAlarms
 Microsoft.WindowsCalculator
 Microsoft.WindowsCamera
+
+# --- Mail, Calendar & Outlook (Modern Replacement) ---
+#*OutlookForWindows*
+#*windowscommunicationsapps*
 #Microsoft.WindowsCommunicationsApps
+
 Microsoft.WindowsFeedbackHub
 Microsoft.WindowsMaps
 Microsoft.WindowsNotepad
 Microsoft.WindowsSoundRecorder
 Microsoft.WindowsStore
 Microsoft.WindowsTerminal
-#Microsoft.XboxApp
-#Microsoft.Xbox.TCUI
-#Microsoft.XboxGameOverlay
-#Microsoft.XboxGamingOverlay
-#Microsoft.XboxIdentityProvider
-#Microsoft.XboxSpeechToTextOverlay
-#Microsoft.YourPhone
+
+# --- Media & Phone ---
+##Microsoft.YourPhone
+#*ZuneMusic*
+#*ZuneVideo*
 #Microsoft.ZuneMusic
 #Microsoft.ZuneVideo
+
 #MicrosoftTeams
 MicrosoftWindows.Client.WebExperience
